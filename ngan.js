@@ -3,10 +3,9 @@ const bg = document.getElementById("bg");
 const nganguyen = document.getElementById("nganguyen");
 const bd_cake = document.getElementById("bd-cake");
 const cake = document.getElementById("cake");
-const audio = $('.song')[0];
 
 const timeLeft = document.getElementById("time-left")
-const birthday = new Date("Nov 19, 2022 23:00:00").getTime()
+const birthday = new Date("Nov 20, 2022 20:11:00").getTime()
 const second = 1000
 const minute = second*60
 const hour = minute*60
