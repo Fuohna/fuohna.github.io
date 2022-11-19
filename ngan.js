@@ -3,13 +3,23 @@ const bg = document.getElementById("bg");
 const nganguyen = document.getElementById("nganguyen");
 const bd_cake = document.getElementById("bd-cake");
 const cake = document.getElementById("cake");
+const bd_song = document.getElementById("bd-song");
 
 const timeLeft = document.getElementById("time-left")
-const birthday = new Date("Nov 20, 2022 20:11:00").getTime()
+const birthday = new Date("Nov 20, 2022 0:51:00").getTime()
 const second = 1000
 const minute = second*60
 const hour = minute*60
 const day = hour*24
+
+const start = () => {
+    setTimeout(function() {
+        confetti.start()
+    }, 1000*26);
+    setTimeout(function() {
+        confetti.stop()
+    }, 1000*10);
+};
 
 countDown = () => {
     const today = new Date().getTime()
@@ -29,16 +39,23 @@ countDown = () => {
 
         lightBtn.addEventListener('click', () => {
             lightBtn.style.display = 'none'
+            bd_song.play();
             timeLeft.style.display = 'block'
             timeLeft.style.color = '#f8c74b'
             timeLeft.innerHTML = `Happy 22nd birthday to Ngan!`
             bd_cake.style.display = 'inline'
+            start()
         })
 
         cake.addEventListener('click', () => {
+            confetti.stop()
             bd_cake.style.display = 'none'
-            lightBtn.innerText = `Thân mến,`
+            lightBtn.innerText = `Dear Ngân,`
+            lightBtn.style.height = '50px'
+            lightBtn.style.borderRadius = '20px'
             lightBtn.style.display = 'block'
+            lightBtn.style.marginLeft = '200px'
+            timeLeft.innerHTML = `pa, nad, nahv n pt`
 
             lightBtn.addEventListener('click', ()=> {
                 bg.style.backgroundColor = '#f8c74b'
