@@ -1,59 +1,65 @@
 const lightBtn = document.getElementById("light-btn");
 const bg = document.getElementById("bg");
+const nganguyen = document.getElementById("nganguyen");
+const bd_cake = document.getElementById("bd-cake");
+const cake = document.getElementById("cake");
+const audio = $('.song')[0];
 
-lightBtn.addEventListener("click", () => {});
+const timeLeft = document.getElementById("time-left")
+const birthday = new Date("Nov 19, 2022 23:00:00").getTime()
+const second = 1000
+const minute = second*60
+const hour = minute*60
+const day = hour*24
 
-const confettiShower = [];
-const numConfettis = 200;
-const container = document.body;
-const colors = ["#f2abe7", "#9fa3ec", "#86d2e1 ", "#fec31e "];
+countDown = () => {
+    const today = new Date().getTime()
+    const timeSpan = birthday - today
+    lightBtn.style.display = 'none'
+    bd_cake.style.display = 'none'
 
-alert("pa")
-class Confetti {
-  constructor(x, y, w, h, c) {
-    this.w = Math.floor(Math.random() * 10 + 5);
-    this.h = this.w * 1;
-    this.x = Math.floor(Math.random() * 100);
-    this.y = Math.floor(Math.random() * 100);
-    this.c = colors[Math.floor(Math.random() * colors.length)];
-  }
-  create() {
-    var newConfetti =
-      '<div class="confetti" style="bottom:' +
-      this.y +
-      "%; left:" +
-      this.x +
-      "%;width:" +
-      this.w +
-      "px; height:" +
-      this.h +
-      'px;"><div class="rotate"><div class="askew" style="background-color:' +
-      this.c +
-      '"></div></div></div>';
-    container.innerHTML += newConfetti;
-  }
+    if (timeSpan <= -day){
+        timeLeft.innerHTML = `...`
+        clearInterval(timeId)
+        return
+    }
+    if(timeSpan <= 0){
+        lightBtn.style.display = 'block'
+        nganguyen.style.display = 'none'
+        timeLeft.style.display = 'none'
+
+        lightBtn.addEventListener('click', () => {
+            lightBtn.style.display = 'none'
+            timeLeft.style.display = 'block'
+            timeLeft.style.color = '#f8c74b'
+            timeLeft.innerHTML = `Happy 22nd birthday to Ngan!`
+            bd_cake.style.display = 'inline'
+        })
+
+        cake.addEventListener('click', () => {
+            bd_cake.style.display = 'none'
+            lightBtn.innerText = `Thân mến,`
+            lightBtn.style.display = 'block'
+
+            lightBtn.addEventListener('click', ()=> {
+                bg.style.backgroundColor = '#f8c74b'
+                bd_cake.style.display = 'none'
+                timeLeft.style.padding = '60px'
+                timeLeft.style.display = 'inline'
+                timeLeft.innerHTML = `Chúng mình rất yêu cậu. Chúc cậu tuổi mới vui vẻ, bình an.`
+                timeLeft.style.color = 'rgb(0, 3, 44)'
+            })
+        })
+        clearInterval(timeId)
+        return
+    }
+
+    const days = Math.floor(timeSpan/day)
+    const hours = Math.floor((timeSpan % day) / hour)
+    const minutes = Math.floor((timeSpan % hour) / minute)
+    const seconds = Math.floor((timeSpan % minute) / second)
+
+    timeLeft.innerHTML = `${days}days : ${hours}hrs : ${minutes}mins : ${seconds}s`
 }
 
-function animateConfetti() {
-  for (var i = 1; i <= numConfettis; i++) {
-    var confetti = new Confetti();
-    confetti.create();
-  }
-  var confettis = document.querySelectorAll(".confetti");
-  for (var i = 0; i < confettis.length; i++) {
-    var opacity = Math.random() + 0.1;
-    var animated = confettis[i].animate(
-      [
-        { transform: "translate3d(0,0,0)", opacity: opacity },
-        { transform: "translate3d(20vw,100vh,0)", opacity: 1 },
-      ],
-      {
-        duration: Math.random() * 3000 + 3000,
-        iterations: Infinity,
-        delay: -(Math.random() * 5000),
-      }
-    );
-    confettiShower.push(animated);
-  }
-}
-animateConfetti();
+const timeId = setInterval(countDown, second)
