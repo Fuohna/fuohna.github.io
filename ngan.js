@@ -6,7 +6,7 @@ const cake = document.getElementById("cake");
 const bd_song = document.getElementById("bd-song");
 
 const timeLeft = document.getElementById("time-left")
-const birthday = new Date("Nov 20, 2022 0:51:00").getTime()
+const birthday = new Date("Nov 20, 2022 20:11:00").getTime()
 const second = 1000
 const minute = second*60
 const hour = minute*60
