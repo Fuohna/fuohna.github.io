@@ -32,6 +32,7 @@ body {
   justify-content: center;
   display: grid;
   border-radius: 11px;
+  transition: all 3s ease;
 }
 
 .btn-primary {
@@ -46,6 +47,22 @@ body {
   background-color: #f8c74b;
   border-radius: 50%;
   cursor: pointer;
+  box-shadow: 0px 8px 0px -2px #e63946, 0px 8px 0px 0px #cc444b;
+}
+
+.btn-primary:hover {
+  background-position:right;
+  background-color: #ff6666;
+  box-shadow: 0px 0px 0px -2px #e63946, 0px 0px 0px 0px #cc444b;
+}
+
+.is_animating {
+  animation: heart-burst .8s steps(28) 1;
+}
+
+@keyframes heart-burst {
+  from {background-position:left;}
+  to { background-position:right;}
 }
 
 .bd-cake{
@@ -138,4 +155,4 @@ body {
   to {
     transform: translateY(0);
   }
-}
+}  
