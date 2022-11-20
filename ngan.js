@@ -15,7 +15,7 @@ const day = hour*24
 const start = () => {
     setTimeout(function() {
         confetti.start()
-    }, 1000*26);
+    }, 1000*20);
     setTimeout(function() {
         confetti.stop()
     }, 1000*10);
